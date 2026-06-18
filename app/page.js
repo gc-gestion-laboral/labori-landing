@@ -125,7 +125,7 @@ export default function Home() {
             <span style={{ fontSize: '12px', color: '#6EE7B7', fontWeight: '600' }}>Plataforma activa · Normativa chilena · 15 dias gratis</span>
           </div>
           <h1 style={{ fontSize: 'clamp(36px,6vw,72px)', fontWeight: '900', color: 'white', margin: '0 0 1.5rem', lineHeight: '1.05', letterSpacing: '-2px' }}>
-            Automatiza la administracion<br /><span style={{ color: '#00c8ff' }}>completa de tu empresa.</span>
+            Automatiza la administración<br /><span style={{ color: '#00c8ff' }}>completa de tu empresa.</span>
           </h1>
           <p style={{ fontSize: 'clamp(16px,2vw,20px)', color: 'rgba(255,255,255,0.6)', margin: '0 0 0.75rem', lineHeight: '1.7', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
             Contratos, remuneraciones, documentos laborales y cobranza inteligente desde una sola plataforma.
@@ -185,7 +185,7 @@ export default function Home() {
             <div>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: '#DBEAFE', borderRadius: '20px', padding: '4px 12px', fontSize: '11px', color: '#1A56DB', fontWeight: '700', marginBottom: '1.5rem' }}>👥 GESTION LABORAL</div>
               <h2 style={{ fontSize: 'clamp(24px,3vw,40px)', fontWeight: '900', color: '#0C1A2E', margin: '0 0 1rem', lineHeight: '1.2' }}>Nunca vuelvas a redactar un contrato manualmente.</h2>
-              <p style={{ fontSize: '16px', color: '#6B7280', lineHeight: '1.8', margin: '0 0 2rem' }}>Genera contratos, anexos, certificados y toda la documentacion laboral en segundos. Centraliza el expediente de cada trabajador y cumple con el Codigo del Trabajo chileno sin esfuerzo.</p>
+              <p style={{ fontSize: '16px', color: '#6B7280', lineHeight: '1.8', margin: '0 0 2rem' }}>Genera contratos, anexos, certificados y toda la documentación laboral en segundos. Centraliza el expediente de cada trabajador y cumple con el Código del Trabajo chileno sin esfuerzo.</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '2rem' }}>
                 {['Contratos automaticos', 'Anexos', 'Certificados', 'Licencias medicas', 'Finiquitos', 'Amonestaciones', 'Expediente laboral'].map(f => (
                   <span key={f} style={{ fontSize: '12px', padding: '4px 12px', borderRadius: '20px', background: '#EFF6FF', color: '#1A56DB', fontWeight: '500' }}>{f}</span>
@@ -214,7 +214,7 @@ export default function Home() {
             <div>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(14,165,233,0.2)', borderRadius: '20px', padding: '4px 12px', fontSize: '11px', color: '#0EA5E9', fontWeight: '700', marginBottom: '1.5rem' }}>💰 REMUNERACIONES</div>
               <h2 style={{ fontSize: 'clamp(24px,3vw,40px)', fontWeight: '900', color: 'white', margin: '0 0 1rem', lineHeight: '1.2' }}>Calcula cientos de remuneraciones en minutos.</h2>
-              <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.5)', lineHeight: '1.8', margin: '0 0 2rem' }}>Liquidaciones automaticas con AFP, salud, IUSC y AFC. Genera el archivo Previred, libro de remuneraciones y certificados oficiales sin hojas de calculo.</p>
+              <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.5)', lineHeight: '1.8', margin: '0 0 2rem' }}>Liquidaciones automáticas con AFP, salud, IUSC y AFC. Genera el archivo Previred, libro de remuneraciones y certificados oficiales sin hojas de cálculo.</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '2rem' }}>
                 {['Liquidaciones', 'Previred', 'Libro de remuneraciones', 'Certificado N6 SII', 'DJ 1887', 'Informes de costo'].map(f => (
                   <span key={f} style={{ fontSize: '12px', padding: '4px 12px', borderRadius: '20px', background: 'rgba(14,165,233,0.15)', color: '#0EA5E9', fontWeight: '500' }}>{f}</span>
@@ -396,7 +396,7 @@ export default function Home() {
             ['Como funciona el modelo de precios?', 'Pagas solo por los modulos que activas. Cada modulo tiene tramos Esencial, Profesional y Enterprise segun la cantidad de empresas que gestionas.'],
             ['Que pasa cuando termina la prueba?', 'Al vencer el trial, eleges los modulos que quieres activar y pagas solo por ellos. Sin sorpresas.'],
             ['Puedo cambiar de modulos?', 'Si, puedes activar o desactivar modulos en cualquier momento desde tu cuenta.'],
-            ['Los documentos tienen validez legal?', 'Los documentos siguen los formatos del Codigo del Trabajo chileno. Deben ser firmados por las partes para tener validez.'],
+            ['Los documentos tienen validez legal?', 'Los documentos siguen los formatos del Código del Trabajo chileno. Deben ser firmados por las partes para tener validez.'],
             ['Como funciona el cobro?', 'El cobro es mensual en pesos chilenos, calculado sobre el valor de la UF del primer dia de cada mes.'],
           ].map(([p, r]) => (
             <details key={p} style={{ background: 'rgba(255,255,255,0.04)', borderRadius: '12px', padding: '1.25rem 1.5rem', marginBottom: '1rem', border: '1px solid rgba(255,255,255,0.08)', cursor: 'pointer' }}>
