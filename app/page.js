@@ -329,11 +329,11 @@ export default function Home() {
               {['Modulo', 'Esencial', 'Profesional', 'Enterprise'].map((h, i) => <div key={h} style={{ fontSize: '12px', fontWeight: '700', color: i === 0 ? 'rgba(255,255,255,0.5)' : 'white', textAlign: i > 0 ? 'center' : 'left' }}>{h}</div>)}
             </div>
             {[
-              { modulo: 'Remuneraciones', esencial: '0.8 UF - 10 emp', profesional: '1.0 UF - 160 emp', enterprise: '1.5 UF - ilimitadas' },
-              { modulo: 'Contabilidad', esencial: '0.7 UF - 60 emp', profesional: '1.0 UF - 160 emp', enterprise: '1.5 UF - ilimitadas' },
-              { modulo: 'Plan Empresa (ambos)', esencial: 'No disponible', profesional: '1.5 UF - 160 emp', enterprise: '2.3 UF - ilimitadas' },
+              { modulo: 'Remuneraciones', esencial: '0.8 UF · 10 empresas', profesional: '1.0 UF · 160 empresas', enterprise: '1.5 UF · ilimitadas' },
+              { modulo: 'Contabilidad', esencial: '0.7 UF · 60 empresas', profesional: '1.0 UF · 160 empresas', enterprise: '1.5 UF · ilimitadas' },
+              { modulo: 'Plan Empresa (ambos)', esencial: 'No disponible', profesional: '1.5 UF · 160 empresas', enterprise: '2.3 UF · ilimitadas' },
               { modulo: 'Cobranza Inteligente', esencial: '0.9 UF (0.54 con desc.)', profesional: '', enterprise: '' },
-              { modulo: 'Facturacion', esencial: '0.3 UF - 10 doc', profesional: '1.0 UF - 80 doc', enterprise: '2.0 UF - 180 doc' },
+              { modulo: 'Facturacion', esencial: '0.3 UF · 10 documentos', profesional: '1.0 UF · 80 documentos', enterprise: '2.0 UF · 180 documentos' },
               { modulo: 'Despacho Contable', esencial: '0.7 UF', profesional: '', enterprise: '' },
             ].map((p, i) => (
               <div key={p.modulo} style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', padding: '1rem 1.5rem', gap: '1rem', borderTop: '1px solid rgba(255,255,255,0.05)', background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)' }}>
