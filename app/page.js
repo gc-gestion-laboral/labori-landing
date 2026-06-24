@@ -578,7 +578,7 @@ export default function Home() {
           <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
             <a href="/terminos" style={{ color: 'rgba(255,255,255,0.3)', fontSize: '13px', textDecoration: 'none' }}>Terminos</a>
             <a href="/privacidad" style={{ color: 'rgba(255,255,255,0.3)', fontSize: '13px', textDecoration: 'none' }}>Privacidad</a>
-            <a href="mailto:contacto@labori.cl" style={{ color: 'rgba(255,255,255,0.3)', fontSize: '13px', textDecoration: 'none' }}>contacto@labori.cl</a>
+            <a href="mailto:notificaciones@grupocontadores.cl" style={{ color: 'rgba(255,255,255,0.3)', fontSize: '13px', textDecoration: 'none' }}>notificaciones@grupocontadores.cl</a>
           </div>
           <p style={{ color: 'rgba(255,255,255,0.15)', fontSize: '12px', margin: 0 }}>2026 LaborixX · Hecho por Contadores para Contadores · Chile</p>
         </div>
