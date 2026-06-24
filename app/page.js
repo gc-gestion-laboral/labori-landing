@@ -32,7 +32,19 @@ function useInView(threshold = 0.2) {
   return [ref, inView];
 }
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+  return isMobile;
+}
+
 export default function Home() {
+  const isMobile = useIsMobile();
   const [paso, setPaso] = useState('landing');
   const [form, setForm] = useState({ nombre: '', email: '', password: '', confirmar: '', rut: '' });
   const [error, setError] = useState('');
@@ -105,11 +117,11 @@ export default function Home() {
       <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, background: 'rgba(6,15,30,0.92)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ fontSize: '22px', fontWeight: '900', color: 'white' }}>Labori<span style={{ color: '#00c8ff' }}>X</span></div>
-          <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-            <a href="#modulos" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontSize: '14px' }}>Modulos</a>
-            <a href="#planes" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontSize: '14px' }}>Planes</a>
-            <a href="#roadmap" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontSize: '14px' }}>Roadmap</a>
-            <a href="https://gc-gestion.online" style={{ height: '36px', padding: '0 16px', background: 'rgba(255,255,255,0.08)', color: 'white', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '8px', fontSize: '13px', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>Iniciar sesion</a>
+          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+            {!isMobile && <a href="#modulos" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontSize: '14px' }}>Modulos</a>}
+            {!isMobile && <a href="#planes" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontSize: '14px' }}>Planes</a>}
+            {!isMobile && <a href="#roadmap" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontSize: '14px' }}>Roadmap</a>}
+            {!isMobile && <a href="https://gc-gestion.online" style={{ height: '36px', padding: '0 16px', background: 'rgba(255,255,255,0.08)', color: 'white', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '8px', fontSize: '13px', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>Iniciar sesion</a>}
             <button onClick={() => setPaso('registro')} style={{ height: '36px', padding: '0 16px', background: 'linear-gradient(135deg,#1A56DB,#0EA5E9)', color: 'white', border: 'none', borderRadius: '8px', fontSize: '13px', fontWeight: '700', cursor: 'pointer' }}>Comenzar gratis</button>
           </div>
         </div>
@@ -143,7 +155,7 @@ export default function Home() {
             Ahorra horas de trabajo cada semana y olvídate de los procesos manuales.
           </p>
           {/* TARJETAS SEGMENTACION */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', maxWidth: '800px', margin: '0 auto 3rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '1.5rem', maxWidth: '800px', margin: '0 auto 3rem' }}>
             {/* EMPRESA */}
             <div style={{ background: 'rgba(26,86,219,0.08)', border: '1.5px solid rgba(26,86,219,0.3)', borderRadius: '20px', padding: '2rem', textAlign: 'left', transition: 'transform 0.2s, border-color 0.2s', cursor: 'pointer' }}
               onMouseEnter={e => { e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.borderColor='rgba(0,200,255,0.6)' }}
@@ -204,7 +216,7 @@ export default function Home() {
 
       {/* STATS */}
       <section ref={statsRef} style={{ padding: '5rem 2rem', background: '#060F1E', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-        <div style={{ maxWidth: '1000px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: '2rem', textAlign: 'center' }}>
+        <div style={{ maxWidth: '1000px', margin: '0 auto', display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(auto-fit,minmax(200px,1fr))', gap: isMobile ? '1rem' : '2rem', textAlign: 'center' }}>
           {[
             { valor: horas, sufijo: 'hrs', label: 'Ahorradas por semana', color: '#00c8ff' },
             { valor: docs, sufijo: '+', label: 'Documentos generados', color: '#10B981' },
@@ -222,7 +234,7 @@ export default function Home() {
       {/* MODULO 1 - RRHH */}
       <section id="modulos" style={{ padding: '6rem 2rem', background: '#F8FAFC' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '4rem', alignItems: 'center' }}>
             <div>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: '#DBEAFE', borderRadius: '20px', padding: '4px 12px', fontSize: '11px', color: '#1A56DB', fontWeight: '700', marginBottom: '1.5rem' }}>👥 GESTION LABORAL</div>
               <h2 style={{ fontSize: 'clamp(24px,3vw,40px)', fontWeight: '900', color: '#0C1A2E', margin: '0 0 1rem', lineHeight: '1.2' }}>Nunca vuelvas a redactar un contrato manualmente.</h2>
@@ -246,8 +258,8 @@ export default function Home() {
       {/* MODULO 2 - REMUNERACIONES */}
       <section style={{ padding: '6rem 2rem', background: 'linear-gradient(135deg,#060F1E,#0C1A3A)' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
-            <div style={{ position: 'relative' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '4rem', alignItems: 'center', direction: isMobile ? 'ltr' : 'ltr' }}>
+            <div style={{ position: 'relative', order: isMobile ? 2 : 1 }}>
               <div style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '16px', padding: '8px', boxShadow: '0 24px 60px rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.1)', transform: 'rotate(-1deg)', transition: 'transform 0.3s' }} onMouseEnter={e => e.currentTarget.style.transform = 'rotate(0deg) scale(1.02)'} onMouseLeave={e => e.currentTarget.style.transform = 'rotate(-1deg)'}>
                 <img src="https://gc-gestion.online/capturas/remuneraciones.png" alt="Remuneraciones" style={{ width: '100%', borderRadius: '10px', display: 'block' }} />
               </div>
@@ -275,7 +287,7 @@ export default function Home() {
             <h2 style={{ fontSize: 'clamp(24px,3vw,40px)', fontWeight: '900', color: '#0C1A2E', margin: '0 0 1rem', lineHeight: '1.2' }}>La plataforma que toda oficina contable necesita.</h2>
             <p style={{ fontSize: '16px', color: '#6B7280', lineHeight: '1.8', maxWidth: '700px', margin: '0 auto' }}>Diseñado específicamente para estudios y oficinas de contabilidad. Gestiona todos tus clientes, trámites, alertas y procesos desde un solo lugar.</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: '1.5rem', marginBottom: '3rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit,minmax(280px,1fr))', gap: '1.5rem', marginBottom: '3rem' }}>
             {[
               { icon: '📋', titulo: 'CRM de Clientes', desc: 'Bitácora de atención, historial completo y seguimiento de cada cliente contable.' },
               { icon: '📄', titulo: 'Confección F29', desc: 'Gestión y control de declaraciones mensuales de IVA y PPM para todos tus clientes.' },
@@ -306,7 +318,7 @@ export default function Home() {
       {/* MODULO 4 - CONTABILIDAD */}
       <section style={{ padding: '6rem 2rem', background: 'linear-gradient(135deg,#060F1E,#0C1A3A)' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '4rem', alignItems: 'center' }}>
             <div>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(251,191,36,0.15)', borderRadius: '20px', padding: '4px 12px', fontSize: '11px', color: '#FBBF24', fontWeight: '700', marginBottom: '1.5rem' }}>📊 CONTABILIDAD</div>
               <h2 style={{ fontSize: 'clamp(24px,3vw,40px)', fontWeight: '900', color: 'white', margin: '0 0 1rem', lineHeight: '1.2' }}>Contabilidad completa con libros oficiales.</h2>
@@ -339,7 +351,7 @@ export default function Home() {
             <h2 style={{ fontSize: 'clamp(24px,3vw,40px)', fontWeight: '900', color: '#0C1A2E', margin: '0 0 1rem' }}>Emite documentos comerciales y contratos profesionales.</h2>
             <p style={{ fontSize: '16px', color: '#6B7280', maxWidth: '650px', margin: '0 auto', lineHeight: '1.8' }}>13 tipos de documentos comerciales y 3 contratos legales listos para emitir con tu información. Disponible en todos los planes.</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '2rem', marginBottom: '2rem' }}>
             <div style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '20px', padding: '2rem' }}>
               <div style={{ fontSize: '14px', fontWeight: '800', color: '#059669', marginBottom: '1.5rem', letterSpacing: '0.05em' }}>📋 DOCUMENTOS COMERCIALES</div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
@@ -379,7 +391,7 @@ export default function Home() {
       {/* MODULO 6 - COBRANZA */}
       <section style={{ padding: '6rem 2rem', background: 'linear-gradient(135deg,#060F1E,#0C1A3A)' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '4rem', alignItems: 'center' }}>
             <div>
               <div style={{ display: 'flex', gap: '8px', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
                 <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(245,158,11,0.15)', borderRadius: '20px', padding: '4px 12px', fontSize: '11px', color: '#F59E0B', fontWeight: '700' }}>⚡ COBRANZA INTELIGENTE</div>
@@ -433,7 +445,7 @@ export default function Home() {
             <h2 style={{ fontSize: 'clamp(28px,4vw,44px)', fontWeight: '900', color: 'white', margin: '0 0 1rem' }}>Deja de perseguir procesos. Automatizalos.</h2>
             <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.4)', margin: 0 }}>Menos planillas. Menos errores. Menos tiempo perdido. Mas control.</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '2rem' }}>
             <div style={{ background: 'rgba(254,242,242,0.05)', border: '2px solid rgba(220,38,38,0.3)', borderRadius: '20px', padding: '2rem' }}>
               <div style={{ fontSize: '14px', fontWeight: '700', color: '#EF4444', marginBottom: '1.5rem', letterSpacing: '0.1em' }}>ANTES — Sin LaborixX</div>
               {['Word y Excel para cada documento', 'WhatsApp para cobrar manualmente', 'Planillas de remuneraciones a mano', 'Recordatorios manuales por correo', 'Documentos sueltos sin respaldo', 'Cobranzas desordenadas', 'Horas perdidas en tareas repetitivas'].map(t => (
@@ -475,7 +487,7 @@ export default function Home() {
             <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.4)', margin: 0 }}>Modelo modular. Paga por modulo. Escala cuando quieras.</p>
           </div>
           <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '20px', overflow: 'hidden', marginBottom: '2rem' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', background: 'rgba(255,255,255,0.05)', padding: '1rem 1.5rem', gap: '1rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '2fr 1fr 1fr' : '2fr 1fr 1fr 1fr', background: 'rgba(255,255,255,0.05)', padding: isMobile ? '0.75rem 1rem' : '1rem 1.5rem', gap: '0.5rem' }}>
               {['Modulo', 'Esencial', 'Profesional', 'Enterprise'].map((h, i) => <div key={h} style={{ fontSize: '12px', fontWeight: '700', color: i === 0 ? 'rgba(255,255,255,0.5)' : 'white', textAlign: i > 0 ? 'center' : 'left' }}>{h}</div>)}
             </div>
             {[
