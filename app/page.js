@@ -486,8 +486,10 @@ export default function Home() {
             <h2 style={{ fontSize: 'clamp(28px,4vw,44px)', fontWeight: '900', color: 'white', margin: '0 0 1rem' }}>Activa solo lo que necesitas</h2>
             <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.4)', margin: 0 }}>Modelo modular. Paga por modulo. Escala cuando quieras.</p>
           </div>
+          {/* PLANES - TABLA DESKTOP / CARDS MOBILE */}
+          {!isMobile ? (
           <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '20px', overflow: 'hidden', marginBottom: '2rem' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '2fr 1fr 1fr' : '2fr 1fr 1fr 1fr', background: 'rgba(255,255,255,0.05)', padding: isMobile ? '0.75rem 1rem' : '1rem 1.5rem', gap: '0.5rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', background: 'rgba(255,255,255,0.05)', padding: '1rem 1.5rem', gap: '1rem' }}>
               {['Modulo', 'Esencial', 'Profesional', 'Enterprise'].map((h, i) => <div key={h} style={{ fontSize: '12px', fontWeight: '700', color: i === 0 ? 'rgba(255,255,255,0.5)' : 'white', textAlign: i > 0 ? 'center' : 'left' }}>{h}</div>)}
             </div>
             {[
@@ -504,6 +506,33 @@ export default function Home() {
               </div>
             ))}
           </div>
+          ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
+            {[
+              { modulo: 'Remuneraciones', icon: '💰', esencial: '0.8 UF · 10 empresas', profesional: '1.0 UF · 160 empresas', enterprise: '1.5 UF · ilimitadas' },
+              { modulo: 'Contabilidad', icon: '📊', esencial: '0.7 UF · 60 empresas', profesional: '1.0 UF · 160 empresas', enterprise: '1.5 UF · ilimitadas' },
+              { modulo: 'Plan Empresa', icon: '🏢', esencial: '1.0 UF · 60 empresas', profesional: '1.5 UF · 160 empresas', enterprise: '2.3 UF · ilimitadas' },
+              { modulo: 'Cobranza Inteligente', icon: '⚡', esencial: '0.9 UF (0.54 con desc.)', profesional: null, enterprise: null },
+              { modulo: 'Facturacion', icon: '🧾', esencial: '0.3 UF · 10 docs', profesional: '1.0 UF · 80 docs', enterprise: '2.0 UF · 180 docs' },
+              { modulo: 'Despacho Contable', icon: '🏛️', esencial: '0.7 UF', profesional: null, enterprise: null },
+            ].map((p, i) => (
+              <div key={p.modulo} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '14px', padding: '1rem 1.25rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+                  <span style={{ fontSize: '20px' }}>{p.icon}</span>
+                  <span style={{ fontSize: '14px', fontWeight: '700', color: 'white' }}>{p.modulo}</span>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  {[{ label: 'Esencial', val: p.esencial }, { label: 'Profesional', val: p.profesional }, { label: 'Enterprise', val: p.enterprise }].map(t => t.val && (
+                    <div key={t.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '6px 10px', background: 'rgba(255,255,255,0.04)', borderRadius: '8px' }}>
+                      <span style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', fontWeight: '600' }}>{t.label}</span>
+                      <span style={{ fontSize: '12px', color: '#00c8ff', fontWeight: '600' }}>{t.val}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          )}
           <div style={{ background: 'linear-gradient(135deg,rgba(245,158,11,0.1),rgba(239,68,68,0.1))', border: '1px solid rgba(245,158,11,0.3)', borderRadius: '16px', padding: '1.5rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
               <div style={{ background: 'linear-gradient(135deg,#F59E0B,#EF4444)', borderRadius: '10px', padding: '8px 14px', fontSize: '18px', fontWeight: '900', color: 'white' }}>40% OFF</div>
