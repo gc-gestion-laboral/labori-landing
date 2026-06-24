@@ -495,7 +495,7 @@ export default function Home() {
             {[
               { modulo: 'Remuneraciones', esencial: '0.8 UF · 10 empresas', profesional: '1.0 UF · 160 empresas', enterprise: '1.5 UF · ilimitadas' },
               { modulo: 'Contabilidad', esencial: '0.7 UF · 60 empresas', profesional: '1.0 UF · 160 empresas', enterprise: '1.5 UF · ilimitadas' },
-              { modulo: 'Plan Empresa (ambos)', esencial: '1.0 UF · 60 empresas', profesional: '1.5 UF · 160 empresas', enterprise: '2.3 UF · ilimitadas' },
+              { modulo: 'Plan Empresa (Remuneraciones + Contabilidad)', esencial: '1.0 UF · 60 empresas', profesional: '1.5 UF · 160 empresas', enterprise: '2.3 UF · ilimitadas' },
               { modulo: 'Cobranza Inteligente', esencial: '0.9 UF (0.54 con desc.)', profesional: '', enterprise: '' },
               { modulo: 'Facturacion', esencial: '0.3 UF · 10 documentos', profesional: '1.0 UF · 80 documentos', enterprise: '2.0 UF · 180 documentos' },
               { modulo: 'Despacho Contable', esencial: '0.7 UF', profesional: '', enterprise: '' },
@@ -511,7 +511,7 @@ export default function Home() {
             {[
               { modulo: 'Remuneraciones', icon: '💰', esencial: '0.8 UF · 10 empresas', profesional: '1.0 UF · 160 empresas', enterprise: '1.5 UF · ilimitadas' },
               { modulo: 'Contabilidad', icon: '📊', esencial: '0.7 UF · 60 empresas', profesional: '1.0 UF · 160 empresas', enterprise: '1.5 UF · ilimitadas' },
-              { modulo: 'Plan Empresa', icon: '🏢', esencial: '1.0 UF · 60 empresas', profesional: '1.5 UF · 160 empresas', enterprise: '2.3 UF · ilimitadas' },
+              { modulo: 'Plan Empresa (Remuneraciones + Contabilidad)', icon: '🏢', esencial: '1.0 UF · 60 empresas', profesional: '1.5 UF · 160 empresas', enterprise: '2.3 UF · ilimitadas' },
               { modulo: 'Cobranza Inteligente', icon: '⚡', esencial: '0.9 UF (0.54 con desc.)', profesional: null, enterprise: null },
               { modulo: 'Facturacion', icon: '🧾', esencial: '0.3 UF · 10 docs', profesional: '1.0 UF · 80 docs', enterprise: '2.0 UF · 180 docs' },
               { modulo: 'Despacho Contable', icon: '🏛️', esencial: '0.7 UF', profesional: null, enterprise: null },
