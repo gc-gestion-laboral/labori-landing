@@ -134,14 +134,48 @@ export default function Home() {
             <span style={{ fontSize: '12px', color: '#6EE7B7', fontWeight: '600' }}>Plataforma activa · Normativa chilena · 15 dias gratis</span>
           </div>
           <h1 style={{ fontSize: 'clamp(36px,6vw,72px)', fontWeight: '900', color: 'white', margin: '0 0 1.5rem', lineHeight: '1.05', letterSpacing: '-2px' }}>
-            Automatiza la administración<br /><span style={{ color: '#00c8ff' }}>completa de tu empresa.</span>
+            Administra toda tu operación<br /><span style={{ color: '#00c8ff' }}>desde una sola plataforma.</span>
           </h1>
           <p style={{ fontSize: 'clamp(16px,2vw,20px)', color: 'rgba(255,255,255,0.6)', margin: '0 0 0.75rem', lineHeight: '1.7', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
-            Contratos, remuneraciones, documentos laborales y cobranza inteligente desde una sola plataforma.
+            Contratos, remuneraciones, documentos laborales y cobranza inteligente. Todo en un solo lugar.
           </p>
           <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.4)', margin: '0 0 3rem' }}>
             Ahorra horas de trabajo cada semana y olvídate de los procesos manuales.
           </p>
+          {/* TARJETAS SEGMENTACION */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', maxWidth: '800px', margin: '0 auto 3rem' }}>
+            {/* EMPRESA */}
+            <div style={{ background: 'rgba(26,86,219,0.08)', border: '1.5px solid rgba(26,86,219,0.3)', borderRadius: '20px', padding: '2rem', textAlign: 'left', transition: 'transform 0.2s, border-color 0.2s', cursor: 'pointer' }}
+              onMouseEnter={e => { e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.borderColor='rgba(0,200,255,0.6)' }}
+              onMouseLeave={e => { e.currentTarget.style.transform='none'; e.currentTarget.style.borderColor='rgba(26,86,219,0.3)' }}>
+              <div style={{ fontSize: '36px', marginBottom: '12px' }}>👨‍💼</div>
+              <div style={{ fontSize: '18px', fontWeight: '800', color: 'white', marginBottom: '12px' }}>Soy una empresa</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '1.5rem' }}>
+                {['✓ Remuneraciones', '✓ Contratos', '✓ RR.HH.', '✓ Facturación', '✓ Cobranza', '✓ IA 24/7'].map(f => (
+                  <div key={f} style={{ fontSize: '13px', color: 'rgba(255,255,255,0.7)' }}>{f}</div>
+                ))}
+              </div>
+              <button onClick={() => setPaso('registro')} style={{ width: '100%', height: '42px', background: 'linear-gradient(135deg,#1A56DB,#0EA5E9)', color: 'white', border: 'none', borderRadius: '10px', fontSize: '14px', fontWeight: '700', cursor: 'pointer' }}>
+                Revisar Soluciones →
+              </button>
+            </div>
+            {/* OFICINA CONTABLE */}
+            <div style={{ background: 'rgba(124,58,237,0.08)', border: '1.5px solid rgba(124,58,237,0.3)', borderRadius: '20px', padding: '2rem', textAlign: 'left', transition: 'transform 0.2s, border-color 0.2s', cursor: 'pointer' }}
+              onMouseEnter={e => { e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.borderColor='rgba(167,139,250,0.6)' }}
+              onMouseLeave={e => { e.currentTarget.style.transform='none'; e.currentTarget.style.borderColor='rgba(124,58,237,0.3)' }}>
+              <div style={{ fontSize: '36px', marginBottom: '12px' }}>📊</div>
+              <div style={{ fontSize: '18px', fontWeight: '800', color: 'white', marginBottom: '12px' }}>Tengo una oficina contable</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '1.5rem' }}>
+                {['✓ CRM de clientes', '✓ F29 y Declaraciones', '✓ Renta', '✓ Onboarding empresarial', '✓ Bodega documental', '✓ Alertas y seguimientos'].map(f => (
+                  <div key={f} style={{ fontSize: '13px', color: 'rgba(255,255,255,0.7)' }}>{f}</div>
+                ))}
+              </div>
+              <button onClick={() => setPaso('registro')} style={{ width: '100%', height: '42px', background: 'linear-gradient(135deg,#7C3AED,#6D28D9)', color: 'white', border: 'none', borderRadius: '10px', fontSize: '14px', fontWeight: '700', cursor: 'pointer' }}>
+                Revisar Soluciones →
+              </button>
+            </div>
+          </div>
+
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '4rem' }}>
             <button onClick={() => setPaso('registro')} style={{ height: '56px', padding: '0 40px', background: 'linear-gradient(135deg,#1A56DB,#0EA5E9)', color: 'white', border: 'none', borderRadius: '14px', fontSize: '17px', fontWeight: '800', cursor: 'pointer', boxShadow: '0 8px 32px rgba(26,86,219,0.5)' }} onMouseEnter={e => e.target.style.transform = 'translateY(-2px)'} onMouseLeave={e => e.target.style.transform = 'none'}>
               Solicitar Demo
