@@ -544,10 +544,10 @@ export default function Home() {
           {!isMobile ? (
           <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '20px', overflow: 'hidden', marginBottom: '2rem' }}>
             <div style={{ display: 'grid', gridTemplateColumns: '2.4fr 1.2fr 1.2fr', background: 'rgba(255,255,255,0.05)', padding: '1rem 1.5rem', gap: '1rem' }}>
-              {['Módulo', 'Plan', 'Ilimitado'].map((h, i) => <div key={h} style={{ fontSize: '12px', fontWeight: '700', color: i === 0 ? 'rgba(255,255,255,0.5)' : 'white', textAlign: i > 0 ? 'center' : 'left' }}>{h}</div>)}
+              {['Módulo', 'Plan Profesional', 'Plan Corporativo'].map((h, i) => <div key={h} style={{ fontSize: '12px', fontWeight: '700', color: i === 0 ? 'rgba(255,255,255,0.5)' : 'white', textAlign: i > 0 ? 'center' : 'left' }}>{h}</div>)}
             </div>
             {[
-              { modulo: 'Plan Full — Oficina Contable + Contabilidad + Gestión Laboral', esencial: '1.5 UF · hasta 60 empresas', profesional: '', enterprise: '2.0 UF · ilimitadas' },
+              { modulo: 'Planes Labori — Oficina Contable + Contabilidad + Gestión Laboral', esencial: '1.5 UF · hasta 60 empresas', profesional: '', enterprise: '2.0 UF · ilimitadas' },
               { modulo: 'Labori AI Studio (adicional)', esencial: '1.0 UF', profesional: '', enterprise: '' },
               { modulo: 'Cobranza Inteligente (adicional)', esencial: '1.5 UF', profesional: '', enterprise: '' },
             ].map((p, i) => (
@@ -560,7 +560,7 @@ export default function Home() {
           ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
             {[
-              { modulo: 'Plan Full', icon: '📦', esencial: '1.5 UF · hasta 60 empresas', profesional: null, enterprise: '2.0 UF · ilimitadas' },
+              { modulo: 'Planes Labori', icon: '📦', esencial: '1.5 UF · hasta 60 empresas', profesional: null, enterprise: '2.0 UF · ilimitadas' },
               { modulo: 'Labori AI Studio', icon: '✨', esencial: '1.0 UF', profesional: null, enterprise: null },
               { modulo: 'Cobranza Inteligente', icon: '⚡', esencial: '1.5 UF', profesional: null, enterprise: null },
             ].map((p, i) => (
@@ -570,7 +570,7 @@ export default function Home() {
                   <span style={{ fontSize: '14px', fontWeight: '700', color: 'white' }}>{p.modulo}</span>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  {[{ label: 'Plan', val: p.esencial }, { label: 'Ilimitado', val: p.enterprise }].map(t => t.val && (
+                  {[{ label: 'Plan Profesional', val: p.esencial }, { label: 'Plan Corporativo', val: p.enterprise }].map(t => t.val && (
                     <div key={t.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '6px 10px', background: 'rgba(255,255,255,0.04)', borderRadius: '8px' }}>
                       <span style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', fontWeight: '600' }}>{t.label}</span>
                       <span style={{ fontSize: '12px', color: '#00c8ff', fontWeight: '600' }}>{t.val}</span>
