@@ -46,6 +46,13 @@ function useIsMobile() {
 export default function Home() {
   const isMobile = useIsMobile();
   const [paso, setPaso] = useState('landing');
+
+  // Si la URL trae ?registro, abrir el formulario de inmediato
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.search.includes('registro')) {
+      setPaso('registro');
+    }
+  }, []);
   const [form, setForm] = useState({ nombre: '', email: '', password: '', confirmar: '', rut: '', telefono: '' });
   const [error, setError] = useState('');
   const [cargando, setCargando] = useState(false);
@@ -543,7 +550,6 @@ export default function Home() {
               { modulo: 'Plan Full — Oficina Contable + Contabilidad + Gestión Laboral', esencial: '1.5 UF · hasta 60 empresas', profesional: '', enterprise: '2.0 UF · ilimitadas' },
               { modulo: 'Labori AI Studio (adicional)', esencial: '1.0 UF', profesional: '', enterprise: '' },
               { modulo: 'Cobranza Inteligente (adicional)', esencial: '1.5 UF', profesional: '', enterprise: '' },
-              { modulo: 'Facturación (adicional)', esencial: '0.3 UF · 10 documentos', profesional: '1.0 UF · 80 documentos', enterprise: '2.0 UF · 180 documentos' },
             ].map((p, i) => (
               <div key={p.modulo} style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', padding: '1rem 1.5rem', gap: '1rem', borderTop: '1px solid rgba(255,255,255,0.05)', background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)' }}>
                 <div style={{ fontSize: '13px', fontWeight: '600', color: 'white' }}>{p.modulo}</div>
@@ -557,7 +563,6 @@ export default function Home() {
               { modulo: 'Plan Full', icon: '📦', esencial: '1.5 UF · hasta 60 empresas', profesional: null, enterprise: '2.0 UF · ilimitadas' },
               { modulo: 'Labori AI Studio', icon: '✨', esencial: '1.0 UF', profesional: null, enterprise: null },
               { modulo: 'Cobranza Inteligente', icon: '⚡', esencial: '1.5 UF', profesional: null, enterprise: null },
-              { modulo: 'Facturación', icon: '🧾', esencial: '0.3 UF · 10 docs', profesional: '1.0 UF · 80 docs', enterprise: '2.0 UF · 180 docs' },
             ].map((p, i) => (
               <div key={p.modulo} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '14px', padding: '1rem 1.25rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
