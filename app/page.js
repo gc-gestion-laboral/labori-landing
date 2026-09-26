@@ -46,7 +46,7 @@ function useIsMobile() {
 export default function Home() {
   const isMobile = useIsMobile();
   const [paso, setPaso] = useState('landing');
-  const [form, setForm] = useState({ nombre: '', email: '', password: '', confirmar: '', rut: '' });
+  const [form, setForm] = useState({ nombre: '', email: '', password: '', confirmar: '', rut: '', telefono: '' });
   const [error, setError] = useState('');
   const [cargando, setCargando] = useState(false);
   const [trialFin, setTrialFin] = useState(null);
@@ -63,7 +63,7 @@ export default function Home() {
     if (form.password.length < 8) { setError('La contrasena debe tener al menos 8 caracteres'); return; }
     setCargando(true);
     try {
-      const r = await fetch(API + '/suscripciones/registro', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ nombre: form.nombre, email: form.email, password: form.password, rut: form.rut, plan_id: 'starter' }) });
+      const r = await fetch(API + '/suscripciones/registro', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ nombre: form.nombre, email: form.email, password: form.password, rut: form.rut, telefono: form.telefono, plan_id: 'starter' }) });
       const d = await r.json();
       if (!r.ok) { setError(d.error || 'Error al crear cuenta'); return; }
       setTrialFin(d.trial_fin);
@@ -76,10 +76,10 @@ export default function Home() {
     <div style={{ minHeight: '100vh', background: '#060F1E', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem', fontFamily: 'system-ui,sans-serif' }}>
       <div style={{ maxWidth: '520px', width: '100%', textAlign: 'center' }}>
         <div style={{ fontSize: '72px', marginBottom: '1rem' }}>🎉</div>
-        <h1 style={{ fontSize: '32px', fontWeight: '900', color: 'white', margin: '0 0 12px' }}>Bienvenido a LaborixX</h1>
+        <h1 style={{ fontSize: '32px', fontWeight: '900', color: 'white', margin: '0 0 12px' }}>Bienvenido a Labori</h1>
         <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.5)', margin: '0 0 2rem', lineHeight: '1.7' }}>Tu cuenta fue creada. Tienes <strong style={{ color: '#00c8ff' }}>15 dias de prueba gratuita</strong>.</p>
         {trialFin && <div style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1rem', marginBottom: '2rem', border: '1px solid rgba(255,255,255,0.1)' }}><p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '13px', margin: 0 }}>Tu prueba gratuita vence el</p><p style={{ color: 'white', fontSize: '20px', fontWeight: '700', margin: '4px 0 0' }}>{new Date(trialFin).toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric' })}</p></div>}
-        <a href="https://gc-gestion.online" style={{ display: 'block', padding: '16px', background: 'linear-gradient(135deg,#1A56DB,#0EA5E9)', color: 'white', borderRadius: '12px', textDecoration: 'none', fontSize: '16px', fontWeight: '700', marginBottom: '12px' }}>Ingresar a LaborixX</a>
+        <a href="https://gc-gestion.online" style={{ display: 'block', padding: '16px', background: 'linear-gradient(135deg,#1A56DB,#0EA5E9)', color: 'white', borderRadius: '12px', textDecoration: 'none', fontSize: '16px', fontWeight: '700', marginBottom: '12px' }}>Ingresar a Labori</a>
       </div>
     </div>
   );
@@ -95,7 +95,7 @@ export default function Home() {
             <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', margin: 0 }}>15 dias de prueba sin tarjeta</p>
           </div>
           <form onSubmit={registrar} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            {[{ key: 'nombre', label: 'Nombre completo', ph: 'Juan Gonzalez', type: 'text', req: true }, { key: 'email', label: 'Email', ph: 'juan@empresa.cl', type: 'email', req: true }, { key: 'rut', label: 'RUT (opcional)', ph: '12.345.678-9', type: 'text' }, { key: 'password', label: 'Contrasena', ph: 'Minimo 8 caracteres', type: 'password', req: true }, { key: 'confirmar', label: 'Confirmar contrasena', ph: 'Repite tu contrasena', type: 'password', req: true }].map(f => (
+            {[{ key: 'nombre', label: 'Nombre completo', ph: 'Juan Gonzalez', type: 'text', req: true }, { key: 'email', label: 'Email', ph: 'juan@empresa.cl', type: 'email', req: true }, { key: 'rut', label: 'RUT (opcional)', ph: '12.345.678-9', type: 'text' }, { key: 'telefono', label: 'Teléfono de contacto', ph: '+56 9 1234 5678', type: 'tel', req: true }, { key: 'password', label: 'Contrasena', ph: 'Minimo 8 caracteres', type: 'password', req: true }, { key: 'confirmar', label: 'Confirmar contrasena', ph: 'Repite tu contrasena', type: 'password', req: true }].map(f => (
               <div key={f.key}>
                 <label style={{ fontSize: '12px', fontWeight: '600', color: 'rgba(255,255,255,0.6)', display: 'block', marginBottom: '6px' }}>{f.label}</label>
                 <input type={f.type} required={f.req} placeholder={f.ph} value={form[f.key]} onChange={e => setForm({ ...form, [f.key]: e.target.value })} style={{ width: '100%', height: '44px', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.1)', padding: '0 14px', fontSize: '14px', outline: 'none', background: 'rgba(255,255,255,0.05)', color: 'white', boxSizing: 'border-box' }} />
@@ -120,7 +120,7 @@ export default function Home() {
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
             {!isMobile && <a href="#modulos" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontSize: '14px' }}>Modulos</a>}
             {!isMobile && <a href="#planes" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontSize: '14px' }}>Planes</a>}
-            {!isMobile && <a href="#roadmap" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontSize: '14px' }}>Roadmap</a>}
+            {!isMobile && <a href="#proximamente" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontSize: '14px' }}>Próximamente</a>}
             {!isMobile && <a href="https://gc-gestion.online" style={{ height: '36px', padding: '0 16px', background: 'rgba(255,255,255,0.08)', color: 'white', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '8px', fontSize: '13px', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>Iniciar sesion</a>}
             <button onClick={() => setPaso('registro')} style={{ height: '36px', padding: '0 16px', background: 'linear-gradient(135deg,#1A56DB,#0EA5E9)', color: 'white', border: 'none', borderRadius: '8px', fontSize: '13px', fontWeight: '700', cursor: 'pointer' }}>Comenzar gratis</button>
           </div>
@@ -200,7 +200,7 @@ export default function Home() {
                 {['#FF5F56', '#FFBD2E', '#27C93F'].map(c => <div key={c} style={{ width: '10px', height: '10px', borderRadius: '50%', background: c }} />)}
                 <div style={{ flex: 1, background: 'rgba(255,255,255,0.06)', borderRadius: '6px', height: '20px', marginLeft: '8px' }} />
               </div>
-              <img src="https://gc-gestion.online/capturas/home.png" alt="LaborixX Dashboard" style={{ width: '100%', borderRadius: '8px', display: 'block' }} />
+              <img src="https://gc-gestion.online/capturas/home.png" alt="Labori Dashboard" style={{ width: '100%', borderRadius: '8px', display: 'block' }} />
             </div>
             <div style={{ position: 'absolute', top: '-20px', right: '-30px', background: 'rgba(16,185,129,0.9)', backdropFilter: 'blur(10px)', borderRadius: '12px', padding: '12px 16px', boxShadow: '0 8px 24px rgba(16,185,129,0.3)' }}>
               <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', marginBottom: '2px' }}>Contratos generados</div>
@@ -395,7 +395,6 @@ export default function Home() {
             <div>
               <div style={{ display: 'flex', gap: '8px', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
                 <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(245,158,11,0.15)', borderRadius: '20px', padding: '4px 12px', fontSize: '11px', color: '#F59E0B', fontWeight: '700' }}>⚡ COBRANZA INTELIGENTE</div>
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'linear-gradient(135deg,#F59E0B,#EF4444)', borderRadius: '20px', padding: '4px 12px', fontSize: '11px', color: 'white', fontWeight: '700' }}>40% OFF</div>
               </div>
               <h2 style={{ fontSize: 'clamp(24px,3vw,40px)', fontWeight: '900', color: 'white', margin: '0 0 1rem', lineHeight: '1.2' }}>Recupera mas dinero sin llamar clientes.</h2>
               <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.5)', lineHeight: '1.8', margin: '0 0 2rem' }}>IA que cobra por ti via WhatsApp y email. Genera convenios de pago, envia links de pago y rastrea cada deudor automaticamente.</p>
@@ -404,27 +403,75 @@ export default function Home() {
                   <span key={f} style={{ fontSize: '12px', padding: '4px 12px', borderRadius: '20px', background: 'rgba(245,158,11,0.1)', color: '#F59E0B', fontWeight: '500' }}>{f}</span>
                 ))}
               </div>
-              <button onClick={() => setPaso('registro')} style={{ height: '48px', padding: '0 28px', background: 'linear-gradient(135deg,#F59E0B,#EF4444)', border: 'none', borderRadius: '12px', color: 'white', fontSize: '15px', fontWeight: '700', cursor: 'pointer', boxShadow: '0 4px 16px rgba(245,158,11,0.4)' }}>Activar con 40% OFF</button>
-              <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.3)', marginTop: '8px' }}>Oferta valida junio y julio 2026 · 6 meses de descuento</p>
+              <button onClick={() => setPaso('registro')} style={{ height: '48px', padding: '0 28px', background: 'linear-gradient(135deg,#F59E0B,#EF4444)', border: 'none', borderRadius: '12px', color: 'white', fontSize: '15px', fontWeight: '700', cursor: 'pointer', boxShadow: '0 4px 16px rgba(245,158,11,0.4)' }}>Probar gratis 15 días</button>
+              <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.3)', marginTop: '8px' }}>Complemento adicional · 1,5 UF + IVA al mes</p>
             </div>
             <div style={{ position: 'relative' }}>
               <div style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '16px', padding: '8px', boxShadow: '0 24px 60px rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.1)', transform: 'rotate(1deg)', transition: 'transform 0.3s' }} onMouseEnter={e => e.currentTarget.style.transform = 'rotate(0deg) scale(1.02)'} onMouseLeave={e => e.currentTarget.style.transform = 'rotate(1deg)'}>
                 <img src="https://gc-gestion.online/capturas/cobranza.png" alt="Cobranza Inteligente" style={{ width: '100%', borderRadius: '10px', display: 'block' }} />
               </div>
               <div style={{ position: 'absolute', top: '-15px', right: '-15px', background: 'linear-gradient(135deg,#F59E0B,#EF4444)', borderRadius: '12px', padding: '10px 16px', boxShadow: '0 8px 24px rgba(245,158,11,0.4)' }}>
-                <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.8)' }}>Descuento activo</div>
-                <div style={{ fontSize: '22px', fontWeight: '900', color: 'white' }}>40% OFF</div>
+                <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.8)' }}>Complemento</div>
+                <div style={{ fontSize: '20px', fontWeight: '900', color: 'white' }}>1,5 UF</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* LABORIX TALK */}
+      {/* LABORI AI STUDIO */}
+      <section style={{ padding: '6rem 2rem', background: 'linear-gradient(135deg,#0A0618,#1E1B4B 50%,#0C1A3A)' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2.5rem' : '4rem', alignItems: 'center' }}>
+            <div>
+              <div style={{ display: 'flex', gap: '8px', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(167,139,250,0.15)', borderRadius: '20px', padding: '4px 12px', fontSize: '11px', color: '#A78BFA', fontWeight: '700' }}>✨ LABORI AI STUDIO</div>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'linear-gradient(135deg,#FBBF24,#F59E0B)', borderRadius: '20px', padding: '4px 12px', fontSize: '11px', color: '#3A2A05', fontWeight: '800' }}>NUEVO</div>
+              </div>
+              <h2 style={{ fontSize: 'clamp(24px,3vw,40px)', fontWeight: '900', color: 'white', margin: '0 0 1rem', lineHeight: '1.2' }}>Tu experiencia profesional, potenciada por IA.</h2>
+              <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.55)', lineHeight: '1.8', margin: '0 0 1.5rem' }}>Redacta en segundos lo que antes te tomaba horas. Documentos legales, cartas al SII, cláusulas societarias y explicaciones para tus clientes, listos para copiar y enviar.</p>
+
+              <div style={{ background: 'rgba(251,191,36,0.08)', border: '1px solid rgba(251,191,36,0.3)', borderRadius: '14px', padding: '1.25rem 1.5rem', marginBottom: '1.75rem' }}>
+                <div style={{ fontSize: '15px', fontWeight: '800', color: '#FBBF24', marginBottom: '6px' }}>40 CONSULTAS ESPECIALIZADAS AL MES</div>
+                <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', marginBottom: '10px', letterSpacing: '0.3px' }}>Tributaria · Laboral · Civil · Societaria · Contable · RR.HH.</div>
+                <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.75)', lineHeight: '1.7' }}>Analiza casos complejos consultando <strong style={{ color: '#FBBF24' }}>fuentes oficiales</strong> actualizadas y entrega la normativa utilizada como respaldo.</div>
+              </div>
+
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '2rem' }}>
+                {['Objetos sociales', 'Cláusulas de arbitraje', 'Cartas al SII', 'Comodatos y poderes', 'Artículo 38 bis', 'Contratos', 'Informes F29', 'Correos profesionales'].map(f => (
+                  <span key={f} style={{ fontSize: '12px', padding: '4px 12px', borderRadius: '20px', background: 'rgba(167,139,250,0.12)', color: '#C4B5FD', fontWeight: '500' }}>{f}</span>
+                ))}
+              </div>
+
+              <button onClick={() => setPaso('registro')} style={{ height: '48px', padding: '0 28px', background: 'linear-gradient(135deg,#A78BFA,#7C3AED)', border: 'none', borderRadius: '12px', color: 'white', fontSize: '15px', fontWeight: '700', cursor: 'pointer', boxShadow: '0 4px 20px rgba(124,58,237,0.45)' }}>Probar gratis 15 días</button>
+              <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.3)', marginTop: '8px' }}>Complemento adicional · 1 UF + IVA al mes · Generación ilimitada de documentos</p>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              {[
+                { ic: '📜', t: 'Objeto social', d: 'Amplio y profesional, según el tipo de sociedad' },
+                { ic: '⚖️', t: 'Cláusulas', d: 'Arbitraje y cláusulas a medida para estatutos' },
+                { ic: '✉️', t: 'Carta al SII', d: 'Responde observaciones punto por punto' },
+                { ic: '🧾', t: 'Depurador F29', d: 'Explica el formulario en lenguaje simple' },
+                { ic: '📋', t: 'Documentos', d: 'Comodatos, poderes, mandatos y contratos' },
+                { ic: '🎓', t: 'Consulta experta', d: 'Con normativa y fuentes citadas' },
+              ].map(x => (
+                <div key={x.t} style={{ background: 'rgba(255,255,255,0.045)', border: '1px solid rgba(255,255,255,0.09)', borderRadius: '14px', padding: '1.1rem 1.2rem', transition: 'transform 0.2s' }} onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-3px)'} onMouseLeave={e => e.currentTarget.style.transform = 'none'}>
+                  <div style={{ fontSize: '24px', marginBottom: '10px' }}>{x.ic}</div>
+                  <div style={{ fontSize: '13.5px', fontWeight: '700', color: 'white', marginBottom: '5px' }}>{x.t}</div>
+                  <div style={{ fontSize: '11.5px', color: 'rgba(255,255,255,0.45)', lineHeight: '1.55' }}>{x.d}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* LABORI TALK */}
       <section style={{ padding: '6rem 2rem', background: '#F8FAFC' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto', textAlign: 'center' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(0,200,255,0.08)', border: '1px solid rgba(0,200,255,0.15)', borderRadius: '20px', padding: '4px 14px', fontSize: '11px', color: '#0891b2', fontWeight: '600', marginBottom: '2rem' }}>INTELIGENCIA ARTIFICIAL</div>
-          <h2 style={{ fontSize: 'clamp(28px,4vw,48px)', fontWeight: '900', color: '#0C1A2E', margin: '0 0 1rem' }}>LaborixX Talk</h2>
+          <h2 style={{ fontSize: 'clamp(28px,4vw,48px)', fontWeight: '900', color: '#0C1A2E', margin: '0 0 1rem' }}>Labori Talk</h2>
           <p style={{ fontSize: '18px', color: '#6B7280', margin: '0 0 3rem', lineHeight: '1.7', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>IA entrenada para cobranza en Chile. Responde por WhatsApp 24/7, entiende cada deuda y escala cuando sea necesario.</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: '1rem' }}>
             {[{ icon: '🕐', titulo: 'Respuesta 24/7', desc: 'Nunca deja sin responder' }, { icon: '🧠', titulo: 'Entrenada para cobrar', desc: 'Conoce cada cliente' }, { icon: '🔗', titulo: 'Integrada al sistema', desc: 'Ve saldos y convenios' }, { icon: '📉', titulo: 'Reduce trabajo manual', desc: 'Automatiza el 80%' }].map(t => (
@@ -447,13 +494,13 @@ export default function Home() {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '2rem' }}>
             <div style={{ background: 'rgba(254,242,242,0.05)', border: '2px solid rgba(220,38,38,0.3)', borderRadius: '20px', padding: '2rem' }}>
-              <div style={{ fontSize: '14px', fontWeight: '700', color: '#EF4444', marginBottom: '1.5rem', letterSpacing: '0.1em' }}>ANTES — Sin LaborixX</div>
+              <div style={{ fontSize: '14px', fontWeight: '700', color: '#EF4444', marginBottom: '1.5rem', letterSpacing: '0.1em' }}>ANTES — Sin Labori</div>
               {['Word y Excel para cada documento', 'WhatsApp para cobrar manualmente', 'Planillas de remuneraciones a mano', 'Recordatorios manuales por correo', 'Documentos sueltos sin respaldo', 'Cobranzas desordenadas', 'Horas perdidas en tareas repetitivas'].map(t => (
                 <div key={t} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 0', borderBottom: '1px solid rgba(220,38,38,0.1)', fontSize: '14px', color: 'rgba(255,255,255,0.5)' }}><span style={{ color: '#EF4444', fontWeight: '700' }}>✗</span>{t}</div>
               ))}
             </div>
             <div style={{ background: 'rgba(16,185,129,0.05)', border: '2px solid rgba(0,200,255,0.3)', borderRadius: '20px', padding: '2rem' }}>
-              <div style={{ fontSize: '14px', fontWeight: '700', color: '#00c8ff', marginBottom: '1.5rem', letterSpacing: '0.1em' }}>DESPUES — Con LaborixX</div>
+              <div style={{ fontSize: '14px', fontWeight: '700', color: '#00c8ff', marginBottom: '1.5rem', letterSpacing: '0.1em' }}>DESPUES — Con Labori</div>
               {['Contratos automaticos en segundos', 'Cobranza automatica con IA 24/7', 'Liquidaciones calculadas y validadas', 'Flujos automaticos programados', 'Todo centralizado y con respaldo', 'Cartera de cobranza en tiempo real', 'Mas tiempo para lo que importa'].map(t => (
                 <div key={t} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 0', borderBottom: '1px solid rgba(0,200,255,0.1)', fontSize: '14px', color: 'rgba(255,255,255,0.8)' }}><span style={{ color: '#10B981', fontWeight: '700' }}>✓</span>{t}</div>
               ))}
@@ -474,7 +521,7 @@ export default function Home() {
               </div>
               <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.4)', margin: 0, lineHeight: '1.6' }}>Estamos en proceso formal de certificación como Proveedor de Servicios de Facturación Electrónica (PSFE) ante el SII. Disponible próximamente.</p>
             </div>
-            <span style={{ fontSize: '12px', color: '#FBBF24', fontWeight: '600', background: 'rgba(251,191,36,0.08)', padding: '6px 14px', borderRadius: '20px', flexShrink: 0, border: '1px solid rgba(251,191,36,0.2)' }}>Roadmap 2026</span>
+            <span style={{ fontSize: '12px', color: '#FBBF24', fontWeight: '600', background: 'rgba(251,191,36,0.08)', padding: '6px 14px', borderRadius: '20px', flexShrink: 0, border: '1px solid rgba(251,191,36,0.2)' }}>Próximamente 2026</span>
           </div>
         </div>
       </section>
@@ -490,15 +537,13 @@ export default function Home() {
           {!isMobile ? (
           <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '20px', overflow: 'hidden', marginBottom: '2rem' }}>
             <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', background: 'rgba(255,255,255,0.05)', padding: '1rem 1.5rem', gap: '1rem' }}>
-              {['Modulo', 'Esencial', 'Profesional', 'Enterprise'].map((h, i) => <div key={h} style={{ fontSize: '12px', fontWeight: '700', color: i === 0 ? 'rgba(255,255,255,0.5)' : 'white', textAlign: i > 0 ? 'center' : 'left' }}>{h}</div>)}
+              {['Módulo', 'Plan', '', 'Ilimitado'].map((h, i) => <div key={h} style={{ fontSize: '12px', fontWeight: '700', color: i === 0 ? 'rgba(255,255,255,0.5)' : 'white', textAlign: i > 0 ? 'center' : 'left' }}>{h}</div>)}
             </div>
             {[
-              { modulo: 'Remuneraciones', esencial: '0.8 UF · 10 empresas', profesional: '1.0 UF · 160 empresas', enterprise: '1.5 UF · ilimitadas' },
-              { modulo: 'Contabilidad', esencial: '0.7 UF · 60 empresas', profesional: '1.0 UF · 160 empresas', enterprise: '1.5 UF · ilimitadas' },
-              { modulo: 'Plan Empresa (Remuneraciones + Contabilidad)', esencial: '1.0 UF · 60 empresas', profesional: '1.5 UF · 160 empresas', enterprise: '2.3 UF · ilimitadas' },
-              { modulo: 'Cobranza Inteligente', esencial: '0.9 UF (0.54 con desc.)', profesional: '', enterprise: '' },
-              { modulo: 'Facturacion', esencial: '0.3 UF · 10 documentos', profesional: '1.0 UF · 80 documentos', enterprise: '2.0 UF · 180 documentos' },
-              { modulo: 'Despacho Contable', esencial: '0.7 UF', profesional: '', enterprise: '' },
+              { modulo: 'Plan Full — Oficina Contable + Contabilidad + Gestión Laboral', esencial: '1.5 UF · hasta 60 empresas', profesional: '', enterprise: '2.0 UF · ilimitadas' },
+              { modulo: 'Labori AI Studio (adicional)', esencial: '1.0 UF', profesional: '', enterprise: '' },
+              { modulo: 'Cobranza Inteligente (adicional)', esencial: '1.5 UF', profesional: '', enterprise: '' },
+              { modulo: 'Facturación (adicional)', esencial: '0.3 UF · 10 documentos', profesional: '1.0 UF · 80 documentos', enterprise: '2.0 UF · 180 documentos' },
             ].map((p, i) => (
               <div key={p.modulo} style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', padding: '1rem 1.5rem', gap: '1rem', borderTop: '1px solid rgba(255,255,255,0.05)', background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)' }}>
                 <div style={{ fontSize: '13px', fontWeight: '600', color: 'white' }}>{p.modulo}</div>
@@ -509,12 +554,10 @@ export default function Home() {
           ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
             {[
-              { modulo: 'Remuneraciones', icon: '💰', esencial: '0.8 UF · 10 empresas', profesional: '1.0 UF · 160 empresas', enterprise: '1.5 UF · ilimitadas' },
-              { modulo: 'Contabilidad', icon: '📊', esencial: '0.7 UF · 60 empresas', profesional: '1.0 UF · 160 empresas', enterprise: '1.5 UF · ilimitadas' },
-              { modulo: 'Plan Empresa (Remuneraciones + Contabilidad)', icon: '🏢', esencial: '1.0 UF · 60 empresas', profesional: '1.5 UF · 160 empresas', enterprise: '2.3 UF · ilimitadas' },
-              { modulo: 'Cobranza Inteligente', icon: '⚡', esencial: '0.9 UF (0.54 con desc.)', profesional: null, enterprise: null },
-              { modulo: 'Facturacion', icon: '🧾', esencial: '0.3 UF · 10 docs', profesional: '1.0 UF · 80 docs', enterprise: '2.0 UF · 180 docs' },
-              { modulo: 'Despacho Contable', icon: '🏛️', esencial: '0.7 UF', profesional: null, enterprise: null },
+              { modulo: 'Plan Full', icon: '📦', esencial: '1.5 UF · hasta 60 empresas', profesional: null, enterprise: '2.0 UF · ilimitadas' },
+              { modulo: 'Labori AI Studio', icon: '✨', esencial: '1.0 UF', profesional: null, enterprise: null },
+              { modulo: 'Cobranza Inteligente', icon: '⚡', esencial: '1.5 UF', profesional: null, enterprise: null },
+              { modulo: 'Facturación', icon: '🧾', esencial: '0.3 UF · 10 docs', profesional: '1.0 UF · 80 docs', enterprise: '2.0 UF · 180 docs' },
             ].map((p, i) => (
               <div key={p.modulo} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '14px', padding: '1rem 1.25rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
@@ -522,7 +565,7 @@ export default function Home() {
                   <span style={{ fontSize: '14px', fontWeight: '700', color: 'white' }}>{p.modulo}</span>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  {[{ label: 'Esencial', val: p.esencial }, { label: 'Profesional', val: p.profesional }, { label: 'Enterprise', val: p.enterprise }].map(t => t.val && (
+                  {[{ label: 'Plan', val: p.esencial }, { label: 'Profesional', val: p.profesional }, { label: 'Ilimitado', val: p.enterprise }].map(t => t.val && (
                     <div key={t.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '6px 10px', background: 'rgba(255,255,255,0.04)', borderRadius: '8px' }}>
                       <span style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', fontWeight: '600' }}>{t.label}</span>
                       <span style={{ fontSize: '12px', color: '#00c8ff', fontWeight: '600' }}>{t.val}</span>
@@ -533,22 +576,12 @@ export default function Home() {
             ))}
           </div>
           )}
-          <div style={{ background: 'linear-gradient(135deg,rgba(245,158,11,0.1),rgba(239,68,68,0.1))', border: '1px solid rgba(245,158,11,0.3)', borderRadius: '16px', padding: '1.5rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-              <div style={{ background: 'linear-gradient(135deg,#F59E0B,#EF4444)', borderRadius: '10px', padding: '8px 14px', fontSize: '18px', fontWeight: '900', color: 'white' }}>40% OFF</div>
-              <div>
-                <div style={{ fontSize: '14px', fontWeight: '700', color: '#FCD34D' }}>Oferta de lanzamiento - Junio y Julio 2026</div>
-                <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)' }}>Modulo Cobranza Inteligente con 40% de descuento durante 6 meses</div>
-              </div>
-            </div>
-            <button onClick={() => setPaso('registro')} style={{ height: '40px', padding: '0 20px', background: 'linear-gradient(135deg,#F59E0B,#EF4444)', border: 'none', borderRadius: '10px', color: 'white', fontSize: '13px', fontWeight: '700', cursor: 'pointer' }}>Aprovechar oferta</button>
-          </div>
-          <p style={{ textAlign: 'center', color: 'rgba(255,255,255,0.3)', fontSize: '13px' }}>Todos los modulos incluyen 15 dias de prueba gratis. Maximo 3 editores + 15 visores. Precios en UF + IVA.</p>
+          <p style={{ textAlign: 'center', color: 'rgba(255,255,255,0.3)', fontSize: '13px' }}>Todos los planes incluyen 15 días de prueba gratis. Máximo 3 editores + 15 visores. Precios en UF + IVA.</p>
         </div>
       </section>
 
-      {/* ROADMAP */}
-      <section id="roadmap" style={{ padding: '6rem 2rem', background: '#F8FAFC' }}>
+      {/* PROXIMAMENTE */}
+      <section id="proximamente" style={{ padding: '6rem 2rem', background: '#F8FAFC' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
             <h2 style={{ fontSize: 'clamp(28px,4vw,44px)', fontWeight: '900', color: '#0C1A2E', margin: '0 0 1rem' }}>Un ecosistema en crecimiento</h2>
@@ -557,10 +590,10 @@ export default function Home() {
           <div style={{ position: 'relative' }}>
             <div style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, width: '2px', background: 'linear-gradient(180deg,#1A56DB,#00c8ff,#8B5CF6)', transform: 'translateX(-50%)' }} />
             {[
-              { lado: 'left', fecha: 'Disponible', color: '#10B981', items: ['Gestion Laboral Integral', 'Contratos y Anexos', 'Remuneraciones y Previred', 'Cobranza Inteligente con IA', 'WhatsApp y email automatico', 'Mercado Pago integrado', 'LaborixX Talk', 'Despacho Contable completo', 'Contabilidad con libros oficiales', 'Documentacion Comercial', 'Contratos con respaldo juridico'] },
-              { lado: 'right', fecha: 'Q3 2026', color: '#F59E0B', items: ['Envio automatico a la DT', 'Robot DT completo', 'Firma electronica avanzada', 'Integraciones bancarias'] },
-              { lado: 'left', fecha: 'Q4 2026', color: '#8B5CF6', items: ['Facturacion electronica (PSFE SII)', 'Contabilidad Express masiva', 'Modulos tributarios avanzados', 'Activos fijos'] },
-              { lado: 'right', fecha: '2027', color: '#EF4444', items: ['Mas automatizaciones IA', 'Integraciones SII avanzadas', 'App movil LaborixX'] },
+              { lado: 'left', fecha: 'Disponible', color: '#10B981', items: ['Gestión Laboral integral', 'Contratos y anexos', 'Remuneraciones y Previred', 'Cobranza Inteligente con IA', 'WhatsApp y correo automático', 'Mercado Pago integrado', 'Labori Talk (IA de cobranza)', 'Labori AI Studio', 'Oficina Contable completa', 'Contabilidad con libros oficiales', 'Documentación comercial', 'Contratos con respaldo jurídico'] },
+              { lado: 'right', fecha: 'Últimos meses de 2026', color: '#F59E0B', items: ['Envío automático a la DT', 'Robot DT completo', 'Firma electrónica avanzada', 'Integraciones bancarias'] },
+              { lado: 'left', fecha: 'Primer semestre 2027', color: '#8B5CF6', items: ['Facturación electrónica (PSFE SII)', 'Contabilidad Express masiva', 'Módulos tributarios avanzados', 'Activos fijos'] },
+              { lado: 'right', fecha: 'Más adelante', color: '#EF4444', items: ['Más automatizaciones con IA', 'Integraciones SII avanzadas', 'Aplicación móvil Labori'] },
             ].map((item, i) => (
               <div key={i} style={{ display: 'flex', justifyContent: item.lado === 'left' ? 'flex-start' : 'flex-end', marginBottom: '3rem', position: 'relative' }}>
                 <div style={{ width: '45%', background: 'white', borderRadius: '16px', padding: '1.5rem', border: '1px solid #E5E7EB', boxShadow: '0 4px 16px rgba(0,0,0,0.06)', position: 'relative' }}>
@@ -589,7 +622,7 @@ export default function Home() {
             ['Puedo cambiar de modulos?', 'Si, puedes activar o desactivar modulos en cualquier momento desde tu cuenta.'],
             ['Los documentos tienen validez legal?', 'Los documentos siguen los formatos del Codigo del Trabajo chileno y cuentan con respaldo juridico. Deben ser firmados por las partes para tener validez.'],
             ['Como funciona el cobro?', 'El cobro es mensual en pesos chilenos, calculado sobre el valor de la UF del primer dia de cada mes.'],
-            ['El sistema fue creado por contadores?', 'Si. LaborixX fue diseñado y desarrollado por contadores chilenos, con respaldo juridico, para satisfacer las necesidades reales de empresas y oficinas contables.'],
+            ['El sistema fue creado por contadores?', 'Si. Labori fue diseñado y desarrollado por contadores chilenos, con respaldo juridico, para satisfacer las necesidades reales de empresas y oficinas contables.'],
           ].map(([p, r]) => (
             <details key={p} style={{ background: 'rgba(255,255,255,0.04)', borderRadius: '12px', padding: '1.25rem 1.5rem', marginBottom: '1rem', border: '1px solid rgba(255,255,255,0.08)', cursor: 'pointer' }}>
               <summary style={{ fontSize: '15px', fontWeight: '600', color: 'white', listStyle: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>{p} <span style={{ color: 'rgba(255,255,255,0.4)' }}>+</span></summary>
@@ -604,7 +637,7 @@ export default function Home() {
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: '600px', height: '600px', borderRadius: '50%', background: 'radial-gradient(circle,rgba(26,86,219,0.15) 0%,transparent 70%)', pointerEvents: 'none' }} />
         <div style={{ position: 'relative' }}>
           <h2 style={{ fontSize: 'clamp(28px,4vw,52px)', fontWeight: '900', color: 'white', margin: '0 0 1rem', letterSpacing: '-1px' }}>Empieza a automatizar<br />tu empresa hoy</h2>
-          <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.5)', margin: '0 0 2rem', lineHeight: '1.7', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>Activa LaborixX y transforma la forma en que gestionas trabajadores, documentos, remuneraciones y cobranza.</p>
+          <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.5)', margin: '0 0 2rem', lineHeight: '1.7', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>Activa Labori y transforma la forma en que gestionas trabajadores, documentos, remuneraciones y cobranza.</p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <button onClick={() => setPaso('registro')} style={{ height: '56px', padding: '0 40px', background: 'linear-gradient(135deg,#1A56DB,#0EA5E9)', color: 'white', border: 'none', borderRadius: '14px', fontSize: '17px', fontWeight: '800', cursor: 'pointer', boxShadow: '0 8px 32px rgba(26,86,219,0.5)' }}>Solicitar demo</button>
             <a href="#planes" style={{ height: '56px', padding: '0 32px', background: 'rgba(255,255,255,0.06)', color: 'white', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '14px', fontSize: '16px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>Ver planes</a>
@@ -621,7 +654,7 @@ export default function Home() {
             <a href="/privacidad" style={{ color: 'rgba(255,255,255,0.3)', fontSize: '13px', textDecoration: 'none' }}>Privacidad</a>
             <a href="mailto:notificaciones@grupocontadores.cl" style={{ color: 'rgba(255,255,255,0.3)', fontSize: '13px', textDecoration: 'none' }}>notificaciones@grupocontadores.cl</a>
           </div>
-          <p style={{ color: 'rgba(255,255,255,0.15)', fontSize: '12px', margin: 0 }}>2026 LaborixX · Hecho por Contadores para Contadores · Chile</p>
+          <p style={{ color: 'rgba(255,255,255,0.15)', fontSize: '12px', margin: 0 }}>2026 Labori · Hecho por Contadores para Contadores · Chile</p>
         </div>
       </footer>
     </div>
