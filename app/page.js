@@ -541,47 +541,93 @@ export default function Home() {
             <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.4)', margin: 0 }}>Modelo modular. Paga por modulo. Escala cuando quieras.</p>
           </div>
           {/* PLANES - TABLA DESKTOP / CARDS MOBILE */}
-          {!isMobile ? (
-          <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '20px', overflow: 'hidden', marginBottom: '2rem' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '2.4fr 1.2fr 1.2fr', background: 'rgba(255,255,255,0.05)', padding: '1rem 1.5rem', gap: '1rem' }}>
-              {['Módulo', 'Plan Profesional', 'Plan Corporativo'].map((h, i) => <div key={h} style={{ fontSize: '12px', fontWeight: '700', color: i === 0 ? 'rgba(255,255,255,0.5)' : 'white', textAlign: i > 0 ? 'center' : 'left' }}>{h}</div>)}
-            </div>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '1.25rem', marginBottom: '2.5rem' }}>
             {[
-              { modulo: 'Planes Labori — Oficina Contable + Contabilidad + Gestión Laboral', esencial: '1.5 UF · hasta 60 empresas', profesional: '', enterprise: '2.0 UF · ilimitadas' },
-              { modulo: 'Labori AI Studio (adicional)', esencial: '1.0 UF', profesional: '', enterprise: '' },
-              { modulo: 'Cobranza Inteligente (adicional)', esencial: '1.5 UF', profesional: '', enterprise: '' },
-            ].map((p, i) => (
-              <div key={p.modulo} style={{ display: 'grid', gridTemplateColumns: '2.4fr 1.2fr 1.2fr', padding: '1rem 1.5rem', gap: '1rem', borderTop: '1px solid rgba(255,255,255,0.05)', background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)' }}>
-                <div style={{ fontSize: '13px', fontWeight: '600', color: 'white' }}>{p.modulo}</div>
-                {[p.esencial, p.enterprise].map((v, j) => <div key={j} style={{ fontSize: '12px', color: v ? '#00c8ff' : 'rgba(255,255,255,0.2)', textAlign: 'center', fontWeight: v ? '600' : '400' }}>{v || '—'}</div>)}
-              </div>
-            ))}
-          </div>
-          ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
-            {[
-              { modulo: 'Planes Labori', icon: '📦', esencial: '1.5 UF · hasta 60 empresas', profesional: null, enterprise: '2.0 UF · ilimitadas' },
-              { modulo: 'Labori AI Studio', icon: '✨', esencial: '1.0 UF', profesional: null, enterprise: null },
-              { modulo: 'Cobranza Inteligente', icon: '⚡', esencial: '1.5 UF', profesional: null, enterprise: null },
-            ].map((p, i) => (
-              <div key={p.modulo} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '14px', padding: '1rem 1.25rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
-                  <span style={{ fontSize: '20px' }}>{p.icon}</span>
-                  <span style={{ fontSize: '14px', fontWeight: '700', color: 'white' }}>{p.modulo}</span>
+              { nombre: 'Plan Profesional', precio: '1,5', limite: 'Hasta 60 empresas', destacado: true },
+              { nombre: 'Plan Corporativo', precio: '2,0', limite: 'Empresas ilimitadas', destacado: false },
+            ].map(pl => (
+              <div key={pl.nombre} style={{
+                position: 'relative',
+                background: pl.destacado ? 'linear-gradient(160deg,rgba(26,86,219,0.14),rgba(255,255,255,0.03))' : 'rgba(255,255,255,0.03)',
+                border: '1px solid ' + (pl.destacado ? 'rgba(59,130,246,0.5)' : 'rgba(255,255,255,0.1)'),
+                borderRadius: '20px', padding: '2rem 1.75rem',
+                boxShadow: pl.destacado ? '0 8px 40px rgba(26,86,219,0.2)' : 'none',
+              }}>
+                {pl.destacado && (
+                  <span style={{ position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%)',
+                    background: 'linear-gradient(135deg,#1A56DB,#0EA5E9)', color: 'white', fontSize: '11px',
+                    fontWeight: '800', letterSpacing: '0.5px', padding: '5px 16px', borderRadius: '20px',
+                    whiteSpace: 'nowrap', boxShadow: '0 4px 14px rgba(26,86,219,0.45)' }}>Más elegido</span>
+                )}
+
+                <div style={{ fontSize: '17px', fontWeight: '800', color: 'white', marginBottom: '14px' }}>{pl.nombre}</div>
+
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', marginBottom: '6px' }}>
+                  <span style={{ fontSize: '44px', fontWeight: '900', color: 'white', letterSpacing: '-2px', lineHeight: 1 }}>{pl.precio}</span>
+                  <span style={{ fontSize: '17px', fontWeight: '700', color: 'rgba(255,255,255,0.75)' }}>UF</span>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  {[{ label: 'Plan Profesional', val: p.esencial }, { label: 'Plan Corporativo', val: p.enterprise }].map(t => t.val && (
-                    <div key={t.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '6px 10px', background: 'rgba(255,255,255,0.04)', borderRadius: '8px' }}>
-                      <span style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', fontWeight: '600' }}>{t.label}</span>
-                      <span style={{ fontSize: '12px', color: '#00c8ff', fontWeight: '600' }}>{t.val}</span>
+                <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.55)', marginBottom: '20px' }}>+ IVA al mes</div>
+
+                <div style={{ fontSize: '13px', fontWeight: '700', color: '#00c8ff', paddingBottom: '14px',
+                  marginBottom: '14px', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>{pl.limite}</div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '11px', marginBottom: '24px' }}>
+                  {['Gestión de Oficina Contable', 'Sistema de Contabilidad', 'Sistema de Recursos Humanos'].map(f => (
+                    <div key={f} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <span style={{ color: '#4ADE80', fontSize: '14px', fontWeight: '700', flexShrink: 0 }}>✓</span>
+                      <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.78)' }}>{f}</span>
                     </div>
                   ))}
                 </div>
+
+                <button onClick={() => setPaso('registro')} style={{
+                  width: '100%', height: '46px',
+                  background: pl.destacado ? 'linear-gradient(135deg,#1A56DB,#0EA5E9)' : 'rgba(255,255,255,0.08)',
+                  border: pl.destacado ? 'none' : '1px solid rgba(255,255,255,0.18)',
+                  borderRadius: '12px', color: 'white', fontSize: '14.5px', fontWeight: '700', cursor: 'pointer',
+                  boxShadow: pl.destacado ? '0 4px 18px rgba(26,86,219,0.4)' : 'none',
+                }}>Comenzar gratis</button>
               </div>
             ))}
           </div>
-          )}
-          <p style={{ textAlign: 'center', color: 'rgba(255,255,255,0.3)', fontSize: '13px' }}>Todos los planes incluyen 15 días de prueba gratis. Máximo 3 editores + 15 visores. Precios en UF + IVA.</p>
+
+          <div style={{ textAlign: 'center', marginBottom: '1.25rem' }}>
+            <div style={{ fontSize: '15px', fontWeight: '700', color: 'white', marginBottom: '5px' }}>Complementos</div>
+            <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.55)' }}>Se contratan aparte y funcionan con cualquier plan</div>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '1.25rem', marginBottom: '2rem' }}>
+            {[
+              { nombre: 'Labori AI Studio', precio: '1,0', icono: '✨', color: '#A78BFA',
+                desc: 'Documentos legales, cartas al SII, cláusulas e informes con IA. Incluye 40 consultas especializadas al mes.' },
+              { nombre: 'Cobranza Inteligente', precio: '1,5', icono: '⚡', color: '#F59E0B',
+                desc: 'IA que cobra por WhatsApp y correo, genera convenios de pago y rastrea cada deudor.' },
+            ].map(ad => (
+              <div key={ad.nombre} style={{ position: 'relative', background: 'rgba(255,255,255,0.03)',
+                border: '1px solid rgba(255,255,255,0.1)', borderRadius: '18px', padding: '1.75rem 1.5rem' }}>
+                <span style={{ position: 'absolute', top: '14px', right: '14px', fontSize: '10px', fontWeight: '700',
+                  letterSpacing: '0.5px', textTransform: 'uppercase', background: ad.color + '22', color: ad.color,
+                  border: '1px solid ' + ad.color + '44', padding: '3px 10px', borderRadius: '20px' }}>Adicional</span>
+
+                <div style={{ fontSize: '24px', marginBottom: '10px' }}>{ad.icono}</div>
+                <div style={{ fontSize: '15.5px', fontWeight: '700', color: 'white', marginBottom: '12px' }}>{ad.nombre}</div>
+
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: '7px', marginBottom: '4px' }}>
+                  <span style={{ fontSize: '30px', fontWeight: '900', color: 'white', letterSpacing: '-1px', lineHeight: 1 }}>{ad.precio}</span>
+                  <span style={{ fontSize: '14px', fontWeight: '700', color: 'rgba(255,255,255,0.75)' }}>UF</span>
+                </div>
+                <div style={{ fontSize: '12.5px', color: 'rgba(255,255,255,0.5)', marginBottom: '16px' }}>+ IVA al mes</div>
+
+                <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.62)', lineHeight: '1.65', marginBottom: '20px' }}>{ad.desc}</div>
+
+                <button onClick={() => setPaso('registro')} style={{ width: '100%', height: '42px',
+                  background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.16)', borderRadius: '11px',
+                  color: 'white', fontSize: '13.5px', fontWeight: '700', cursor: 'pointer' }}>Comenzar gratis</button>
+              </div>
+            ))}
+          </div>
+
+          <p style={{ textAlign: 'center', color: 'rgba(255,255,255,0.5)', fontSize: '13px' }}>Todos los planes incluyen 15 días de prueba gratis. Máximo 3 editores + 15 visores. Precios en UF + IVA.</p>
         </div>
       </section>
 
