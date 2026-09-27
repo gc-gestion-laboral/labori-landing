@@ -543,8 +543,8 @@ export default function Home() {
           {/* PLANES - TABLA DESKTOP / CARDS MOBILE */}
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '1.25rem', marginBottom: '2.5rem' }}>
             {[
-              { nombre: 'Plan Profesional', precio: '1,5', limite: 'Hasta 60 empresas', destacado: true },
-              { nombre: 'Plan Corporativo', precio: '2,0', limite: 'Empresas ilimitadas', destacado: false },
+              { nombre: 'Plan Profesional', precio: '1,5', limite: 'Hasta 60 empresas', destacado: false },
+              { nombre: 'Plan Corporativo', precio: '2,0', limite: 'Empresas ilimitadas', destacado: true },
             ].map(pl => (
               <div key={pl.nombre} style={{
                 position: 'relative',
