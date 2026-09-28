@@ -122,14 +122,17 @@ export default function Home() {
 
       {/* NAVBAR */}
       <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, background: 'rgba(6,15,30,0.92)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div style={{ fontSize: '22px', fontWeight: '900', color: 'white' }}>Labori<span style={{ color: '#00c8ff' }}>X</span></div>
-          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: isMobile ? '0 1rem' : '0 2rem', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div style={{ fontSize: isMobile ? '18px' : '22px', fontWeight: '900', color: 'white' }}>Labori<span style={{ color: '#00c8ff' }}>X</span></div>
+          <div style={{ display: 'flex', gap: isMobile ? '0.5rem' : '1rem', alignItems: 'center' }}>
             {!isMobile && <a href="#modulos" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontSize: '14px' }}>Modulos</a>}
             {!isMobile && <a href="#planes" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontSize: '14px' }}>Planes</a>}
             {!isMobile && <a href="#proximamente" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontSize: '14px' }}>Próximamente</a>}
             {!isMobile && <a href="https://gc-gestion.online" style={{ height: '36px', padding: '0 16px', background: 'rgba(255,255,255,0.08)', color: 'white', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '8px', fontSize: '13px', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>Iniciar sesion</a>}
-            <button onClick={() => setPaso('registro')} style={{ height: '36px', padding: '0 16px', background: 'linear-gradient(135deg,#1A56DB,#0EA5E9)', color: 'white', border: 'none', borderRadius: '8px', fontSize: '13px', fontWeight: '700', cursor: 'pointer' }}>Comenzar gratis</button>
+            <a href="https://gc-gestion.online/trabajadores" style={{ height: '36px', padding: isMobile ? '0 12px' : '0 16px', background: 'linear-gradient(135deg,#10B981,#059669)', color: 'white', border: 'none', borderRadius: '8px', fontSize: isMobile ? '12px' : '13px', fontWeight: '700', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px', whiteSpace: 'nowrap', boxShadow: '0 3px 14px rgba(16,185,129,0.4)' }}>
+              <span>👤</span>{isMobile ? 'Trabajadores' : 'Acceso Trabajadores'}
+            </a>
+            <button onClick={() => setPaso('registro')} style={{ height: '36px', padding: isMobile ? '0 12px' : '0 16px', background: 'linear-gradient(135deg,#1A56DB,#0EA5E9)', color: 'white', border: 'none', borderRadius: '8px', fontSize: isMobile ? '12px' : '13px', fontWeight: '700', cursor: 'pointer', whiteSpace: 'nowrap' }}>{isMobile ? 'Comenzar' : 'Comenzar gratis'}</button>
           </div>
         </div>
       </nav>
