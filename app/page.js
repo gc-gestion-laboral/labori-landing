@@ -125,6 +125,7 @@ export default function Home() {
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: isMobile ? '0 1rem' : '0 2rem', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ fontSize: isMobile ? '18px' : '22px', fontWeight: '900', color: 'white' }}>Labori<span style={{ color: '#00c8ff' }}>X</span></div>
           <div style={{ display: 'flex', gap: isMobile ? '0.5rem' : '1rem', alignItems: 'center' }}>
+            {!isMobile && <a href="#video" style={{ color: '#00c8ff', textDecoration: 'none', fontSize: '14px', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '5px' }}>▶ Video</a>}
             {!isMobile && <a href="#modulos" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontSize: '14px' }}>Modulos</a>}
             {!isMobile && <a href="#planes" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontSize: '14px' }}>Planes</a>}
             {!isMobile && <a href="#proximamente" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontSize: '14px' }}>Próximamente</a>}
@@ -242,6 +243,31 @@ export default function Home() {
       </section>
 
       {/* MODULO 1 - RRHH */}
+      {/* VIDEO */}
+      <section id="video" style={{ padding: isMobile ? '4rem 1.25rem' : '6rem 2rem', background: '#060F1E', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(0,200,255,0.1)', border: '1px solid rgba(0,200,255,0.2)', borderRadius: '20px', padding: '5px 14px', fontSize: '11px', color: '#00c8ff', fontWeight: '700', marginBottom: '1.25rem' }}>▶ CONOCE LABORI</div>
+            <h2 style={{ fontSize: 'clamp(26px,4vw,42px)', fontWeight: '900', color: 'white', margin: '0 0 1rem', lineHeight: '1.2' }}>Mira cómo funciona en 2 minutos</h2>
+            <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.55)', margin: 0, lineHeight: '1.7', maxWidth: '560px', marginLeft: 'auto', marginRight: 'auto' }}>Te muestro qué es Labori y qué incluye cada módulo, sin tecnicismos.</p>
+          </div>
+
+          <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, borderRadius: isMobile ? '12px' : '18px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.12)', boxShadow: '0 20px 60px rgba(0,0,0,0.5)' }}>
+            <iframe
+              src="https://www.youtube.com/embed/zqJblKim4l8"
+              title="Conoce Labori"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+            />
+          </div>
+
+          <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+            <button onClick={() => setPaso('registro')} style={{ height: '50px', padding: '0 32px', background: 'linear-gradient(135deg,#1A56DB,#0EA5E9)', border: 'none', borderRadius: '13px', color: 'white', fontSize: '15.5px', fontWeight: '700', cursor: 'pointer', boxShadow: '0 6px 24px rgba(26,86,219,0.4)' }}>Probar gratis 15 días</button>
+          </div>
+        </div>
+      </section>
+
       <section id="modulos" style={{ padding: '6rem 2rem', background: '#F8FAFC' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '4rem', alignItems: 'center' }}>
