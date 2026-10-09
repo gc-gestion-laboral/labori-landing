@@ -166,22 +166,7 @@ export default function Home() {
             Ahorra horas de trabajo cada semana y olvídate de los procesos manuales.
           </p>
           {/* TARJETAS SEGMENTACION */}
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '1.5rem', maxWidth: '800px', margin: '0 auto 3rem' }}>
-            {/* EMPRESA */}
-            <div style={{ background: 'rgba(26,86,219,0.08)', border: '1.5px solid rgba(26,86,219,0.3)', borderRadius: '20px', padding: '2rem', textAlign: 'left', transition: 'transform 0.2s, border-color 0.2s', cursor: 'pointer' }}
-              onMouseEnter={e => { e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.borderColor='rgba(0,200,255,0.6)' }}
-              onMouseLeave={e => { e.currentTarget.style.transform='none'; e.currentTarget.style.borderColor='rgba(26,86,219,0.3)' }}>
-              <div style={{ fontSize: '36px', marginBottom: '12px' }}>👨‍💼</div>
-              <div style={{ fontSize: '18px', fontWeight: '800', color: 'white', marginBottom: '12px' }}>Soy una empresa</div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '1.5rem' }}>
-                {['✓ Remuneraciones', '✓ Contratos', '✓ RR.HH.', '✓ Facturación', '✓ Cobranza', '✓ IA 24/7'].map(f => (
-                  <div key={f} style={{ fontSize: '13px', color: 'rgba(255,255,255,0.7)' }}>{f}</div>
-                ))}
-              </div>
-              <button onClick={() => setPaso('registro')} style={{ width: '100%', height: '42px', background: 'linear-gradient(135deg,#1A56DB,#0EA5E9)', color: 'white', border: 'none', borderRadius: '10px', fontSize: '14px', fontWeight: '700', cursor: 'pointer' }}>
-                Revisar Soluciones →
-              </button>
-            </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem', maxWidth: '460px', margin: '0 auto 3rem' }}>
             {/* OFICINA CONTABLE */}
             <div style={{ background: 'rgba(124,58,237,0.08)', border: '1.5px solid rgba(124,58,237,0.3)', borderRadius: '20px', padding: '2rem', textAlign: 'left', transition: 'transform 0.2s, border-color 0.2s', cursor: 'pointer' }}
               onMouseEnter={e => { e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.borderColor='rgba(167,139,250,0.6)' }}
