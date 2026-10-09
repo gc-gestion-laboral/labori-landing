@@ -139,9 +139,9 @@ export default function Home() {
       </nav>
 
       {/* BANNER HECHO POR CONTADORES */}
-      <div style={{ background: 'linear-gradient(180deg,rgba(251,191,36,0.10),rgba(251,191,36,0.02))', borderBottom: '1px solid rgba(251,191,36,0.16)', paddingTop: '64px' }}>
+      <div style={{ background: '#0A1424', borderTop: '1px solid rgba(251,191,36,0.18)', borderBottom: '1px solid rgba(251,191,36,0.18)', paddingTop: '64px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '11px 2rem', textAlign: 'center' }}>
-          <span style={{ fontSize: 'clamp(10px,1.3vw,12.5px)', fontWeight: '700', color: '#FCD34D', letterSpacing: '0.18em', textTransform: 'uppercase', lineHeight: '1.6' }}>
+          <span style={{ fontSize: 'clamp(10.5px,1.3vw,13px)', fontWeight: '700', color: '#FBBF24', letterSpacing: '0.16em', textTransform: 'uppercase', lineHeight: '1.6' }}>
             Tecnología creada por contadores · para contadores
           </span>
         </div>
