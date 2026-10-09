@@ -154,7 +154,7 @@ export default function Home() {
         <div style={{ maxWidth: '900px', position: 'relative' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.2)', borderRadius: '20px', padding: '6px 16px', marginBottom: '2rem' }}>
             <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10B981' }} />
-            <span style={{ fontSize: '12px', color: '#6EE7B7', fontWeight: '600' }}>Plataforma activa · Hecho para contadores en Chile · 15 dias gratis</span>
+            <span style={{ fontSize: '12px', color: '#6EE7B7', fontWeight: '600' }}>Hecho para contadores en Chile · 15 días gratis</span>
           </div>
           <h1 style={{ fontSize: 'clamp(32px,5vw,62px)', fontWeight: '900', color: 'white', margin: '0 0 1.5rem', lineHeight: '1.08', letterSpacing: '-1.5px' }}>
             La plataforma integral para<br /><span style={{ color: '#00c8ff' }}>contadores y oficinas contables.</span>
