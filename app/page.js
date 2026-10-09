@@ -139,10 +139,10 @@ export default function Home() {
       </nav>
 
       {/* BANNER HECHO POR CONTADORES */}
-      <div style={{ background: 'linear-gradient(135deg,#1a1000,#2d1f00)', borderBottom: '1px solid rgba(251,191,36,0.3)', paddingTop: '64px' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '14px 2rem', textAlign: 'center' }}>
-          <span style={{ fontSize: 'clamp(13px,2vw,18px)', fontWeight: '900', background: 'linear-gradient(135deg,#FBBF24,#F59E0B,#FCD34D)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', letterSpacing: '0.02em' }}>
-            ⚖️ SISTEMA INTEGRAL HECHO POR CONTADORES PARA CONTADORES CON RESPALDO JURÍDICO ⚖️
+      <div style={{ background: 'linear-gradient(180deg,rgba(251,191,36,0.10),rgba(251,191,36,0.02))', borderBottom: '1px solid rgba(251,191,36,0.16)', paddingTop: '64px' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '11px 2rem', textAlign: 'center' }}>
+          <span style={{ fontSize: 'clamp(10px,1.3vw,12.5px)', fontWeight: '700', color: '#FCD34D', letterSpacing: '0.18em', textTransform: 'uppercase', lineHeight: '1.6' }}>
+            Tecnología creada por contadores · para contadores
           </span>
         </div>
       </div>
