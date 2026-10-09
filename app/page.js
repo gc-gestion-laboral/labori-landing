@@ -154,16 +154,16 @@ export default function Home() {
         <div style={{ maxWidth: '900px', position: 'relative' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.2)', borderRadius: '20px', padding: '6px 16px', marginBottom: '2rem' }}>
             <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10B981' }} />
-            <span style={{ fontSize: '12px', color: '#6EE7B7', fontWeight: '600' }}>Plataforma activa · Normativa chilena · 15 dias gratis</span>
+            <span style={{ fontSize: '12px', color: '#6EE7B7', fontWeight: '600' }}>Plataforma activa · Hecho para contadores en Chile · 15 dias gratis</span>
           </div>
-          <h1 style={{ fontSize: 'clamp(36px,6vw,72px)', fontWeight: '900', color: 'white', margin: '0 0 1.5rem', lineHeight: '1.05', letterSpacing: '-2px' }}>
-            Administra toda tu operación<br /><span style={{ color: '#00c8ff' }}>desde una sola plataforma.</span>
+          <h1 style={{ fontSize: 'clamp(32px,5vw,62px)', fontWeight: '900', color: 'white', margin: '0 0 1.5rem', lineHeight: '1.08', letterSpacing: '-1.5px' }}>
+            La plataforma integral para<br /><span style={{ color: '#00c8ff' }}>contadores y oficinas contables.</span>
           </h1>
           <p style={{ fontSize: 'clamp(16px,2vw,20px)', color: 'rgba(255,255,255,0.6)', margin: '0 0 0.75rem', lineHeight: '1.7', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
-            Contratos, remuneraciones, documentos laborales y cobranza inteligente. Todo en un solo lugar.
+            Centraliza clientes, contabilidad, remuneraciones, impuestos, documentos, cobranza y la gestión de tu oficina en un solo lugar.
           </p>
           <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.4)', margin: '0 0 3rem' }}>
-            Ahorra horas de trabajo cada semana y olvídate de los procesos manuales.
+            Automatiza procesos, controla tu cartera y entrega una mejor experiencia a tus clientes.
           </p>
           {/* TARJETAS SEGMENTACION */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem', maxWidth: '460px', margin: '0 auto 3rem' }}>
