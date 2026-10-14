@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 
 const API = 'https://gc-gestion.online/api';
 const CAP = 'https://gc-gestion.online/capturas/';
+const VER = '?v=20261014';
 
 function useCountUp(target, duration = 2000, start = false) {
   const [count, setCount] = useState(0);
@@ -231,7 +232,7 @@ export default function Home() {
                 {['#FF5F56', '#FFBD2E', '#27C93F'].map(c => <div key={c} style={{ width: '9px', height: '9px', borderRadius: '50%', background: c }} />)}
                 <div style={{ flex: 1, background: 'rgba(255,255,255,0.06)', borderRadius: '6px', height: '18px', marginLeft: '8px' }} />
               </div>
-              <img src={CAP + 'home.png'} alt="Panel principal de Labori" loading="eager" style={{ width: '100%', borderRadius: '8px', display: 'block' }} />
+              <img src={CAP + 'home.png' + VER} alt="Panel principal de Labori" loading="eager" style={{ width: '100%', borderRadius: '8px', display: 'block' }} />
             </div>
             {!isMobile && (
               <>
@@ -301,7 +302,7 @@ export default function Home() {
 
             <div>
               <div data-marco style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '16px', padding: '7px', border: '1px solid rgba(0,200,255,0.2)', boxShadow: '0 24px 60px rgba(0,0,0,0.45)', marginBottom: '1.25rem' }}>
-                <img src={CAP + 'autobalance.png'} alt="AutoBalance Asistido" loading="lazy" onError={ocultarSiFalla} style={{ width: '100%', borderRadius: '10px', display: 'block' }} />
+                <img src={CAP + 'autobalance.png' + VER} alt="AutoBalance Asistido" loading="lazy" onError={ocultarSiFalla} style={{ width: '100%', borderRadius: '10px', display: 'block' }} />
               </div>
               {/* FLUJO */}
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', flexWrap: 'wrap' }}>
@@ -391,7 +392,7 @@ export default function Home() {
 
             <div style={{ position: 'relative' }}>
               <div data-marco style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '16px', padding: '7px', border: '1px solid rgba(16,185,129,0.25)', boxShadow: '0 24px 60px rgba(0,0,0,0.45)' }}>
-                <img src={CAP + 'portal-clientes.png'} alt="Portal de clientes de Labori" loading="lazy" onError={ocultarSiFalla} style={{ width: '100%', borderRadius: '10px', display: 'block' }} />
+                <img src={CAP + 'portal-clientes.png' + VER} alt="Portal de clientes de Labori" loading="lazy" onError={ocultarSiFalla} style={{ width: '100%', borderRadius: '10px', display: 'block' }} />
                 <div style={{ position: 'absolute', top: '-14px', right: isMobile ? '10px' : '-14px', background: 'linear-gradient(135deg,#10B981,#059669)', borderRadius: '11px', padding: '8px 16px', boxShadow: '0 8px 22px rgba(16,185,129,0.45)', fontSize: '14px', fontWeight: '900', color: 'white', letterSpacing: '0.06em' }}>GRATIS</div>
               </div>
             </div>
