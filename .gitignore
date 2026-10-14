@@ -1,4 +1,6 @@
-node_modules/
-.next/
-.env.local
-app/page.js.bak*
+node_modules
+.next
+.vercel
+.env*.local
+app/*.bak*
+app/*.respaldo*
