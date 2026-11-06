@@ -412,7 +412,7 @@ export default function Home() {
           </div>
           <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, borderRadius: isMobile ? '12px' : '18px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.12)', boxShadow: '0 20px 60px rgba(0,0,0,0.5)' }}>
             <iframe
-              src="https://www.youtube.com/embed/zqJblKim4l8"
+              src="https://www.youtube.com/embed/mihOA_hOiRg"
               title="Conoce Labori"
               loading="lazy"
               allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
